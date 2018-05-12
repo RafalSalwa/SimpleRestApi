@@ -1,0 +1,27 @@
+<project name="Oxana" basedir="." default="none">
+    <property name="workspace" value="${basedir}" />
+    <property name="sourcedir" value="${basedir}/src" />
+
+    <target name="none">
+        <echo>By default I do nothing! Add -l to see all available tasks</echo>
+    </target>
+
+    <target name="generate-jwt-keys" description="Generate new JWT keys if needed">
+        <if>
+            <not>
+                <or>
+                    <available file="var/jwt/private.pem" type="file"/>
+                    <available file="var/jwt/public.pem" type="file"/>
+                </or>
+            </not>
+            <then>
+                <mkdir dir="var/jwt"/>
+                <exec command="openssl genrsa -out var/jwt/private.pem 4096" checkreturn="true" passthru="true"/>
+                <exec command="openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem" checkreturn="true" passthru="true"/>
+            </then>
+            <else>
+                <echo>JWT tokens already exist in var/jwt/!</echo>
+            </else>
+        </if>
+    </target>
+</project>

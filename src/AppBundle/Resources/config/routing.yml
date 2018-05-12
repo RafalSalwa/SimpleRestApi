@@ -1,0 +1,4 @@
+app_api_blog_post:
+    type: annotation
+    resource: "@AppBundle/Controller/Api/BlogPostController.php"
+    prefix: /api
