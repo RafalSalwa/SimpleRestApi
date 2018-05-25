@@ -32,11 +32,11 @@
 /web/uploads/
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+#/app/phpunit.xml
+#/phpunit.xml
 
 # Build data
-/build/
+#/build/
 
 # Composer PHAR
 /composer.phar
